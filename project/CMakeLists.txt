@@ -1,2 +1,2 @@
-add_executable(player_rpi src/main.cpp)
-#target_link_libraries(player_rpi )
+add_executable(rpi_led src/main.cpp)
+#target_link_libraries(rpi_led )

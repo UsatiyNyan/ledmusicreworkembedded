@@ -6,15 +6,16 @@
 #include <vector>
 #include <cmath>
 
-#include "LED.h"
+#include "led.h"
+#include "rgb.h"
 #include "rpi_ws281x/ws2811.h"
 
-
-static inline int32_t rgb_to_hex(RGB &led_rgb) {
+namespace led {
+static int32_t rgb_to_hex(clr::RGB &led_rgb) {
     return ((led_rgb.g & 0xff) << 16) + ((led_rgb.r & 0xff) << 8) + (led_rgb.b & 0xff);
 }
 
-LED::LED(int32_t width, int32_t length) :
+WS281X::WS281X(int32_t width, int32_t length) {
     width(width),
     length(length),
     ledstring(new ws2811_t) {
@@ -34,12 +35,12 @@ LED::LED(int32_t width, int32_t length) :
     }
 }
 
-LED::~LED() {
+led::~led() {
     ws2811_fini(ledstring);
     delete ledstring;
 }
 
-void LED::show_led_on_pi(RGB &led_rgb) {
+void led::show_led_on_pi(RGB &led_rgb) {
     // left
 //	std::cout << led_rgb.r << ' ' << led_rgb.g << ' ' << led_rgb.b << std::endl;
     for (int i = width * length - 1; i >= width + width * length / 2; --i) {
@@ -55,7 +56,7 @@ void LED::show_led_on_pi(RGB &led_rgb) {
     }
 }
 
-int32_t LED::transform_coord(int32_t x, int32_t y) {
+int32_t led::transform_coord(int32_t x, int32_t y) {
     int centre = width * length / 2 - width / 2 - 1;
     int res = 0;
     if (x % 2 != 0) {
@@ -66,12 +67,12 @@ int32_t LED::transform_coord(int32_t x, int32_t y) {
     return res;
 }
 
-bool LED::check_coord(int32_t x, int32_t y) {
+bool led::check_coord(int32_t x, int32_t y) {
     return ((y <= width / 2) && (y >= -width / 2 + 1)) &&
         ((x <= length / 2) && (x >= -length / 2 + 1));
 }
 
-void LED::draw_line(Point &a_real, Point &b_real, RGB &led_rgb) {
+void led::draw_line(Point &a_real, Point &b_real, RGB &led_rgb) {
     Point a = {a_real.x + 0.5f, a_real.y + 0.5f};
     Point b = {b_real.x + 0.5f, b_real.y + 0.5f};
     bool steep = (std::fabs(a.y - b.y) > std::fabs(a.x - b.x));
@@ -111,7 +112,7 @@ void LED::draw_line(Point &a_real, Point &b_real, RGB &led_rgb) {
     }
 }
 
-void LED::show_figure_on_led(Polygon *polygon) {
+void led::show_figure_on_led(Polygon *polygon) {
     for (int i = 0; i < polygon->verteces; ++i) {
         if (i == polygon->verteces - 1) {
             draw_line(polygon->vectors[i], polygon->vectors[0], polygon->color);
@@ -121,7 +122,7 @@ void LED::show_figure_on_led(Polygon *polygon) {
     }
 }
 
-float_t LED::check_missing(float_t rad) {
+float_t led::check_missing(float_t rad) {
     float_t x = (1 + std::sqrt(1 + 2 * rad)) / 2;
     if ((x - std::floor(x) < 0.5000001f) && (x - std::floor(x) > 0.4999999f)) {
         return std::floor(x) + 0.5f;
@@ -129,7 +130,7 @@ float_t LED::check_missing(float_t rad) {
     return -1;
 }
 
-void LED::draw_eight_points(float_t x0, float_t y0, float_t x, float_t y, RGB &color) {
+void led::draw_eight_points(float_t x0, float_t y0, float_t x, float_t y, RGB &color) {
     if (check_coord(std::round(x0 + x), std::round(y0 + y))) {
         ledstring->channel[0].leds[transform_coord(x0 + x, y0 + y)] =
             rgb_to_hex(color);
@@ -164,7 +165,7 @@ void LED::draw_eight_points(float_t x0, float_t y0, float_t x, float_t y, RGB &c
     }
 }
 
-void LED::show_circle_on_led(Polygon *polygon) {
+void led::show_circle_on_led(Polygon *polygon) {
     float_t x0 = polygon->vectors[0].x + 0.5f;
     float_t y0 = polygon->vectors[0].y + 0.5f;
     double_t ir_x = std::fabs(x0) - std::floor(std::fabs(x0));
@@ -257,7 +258,7 @@ void LED::show_circle_on_led(Polygon *polygon) {
     }
 }
 
-void LED::change_settings(int32_t tmp_width, int32_t tmp_length) {
+void led::change_settings(int32_t tmp_width, int32_t tmp_length) {
     std::cout << tmp_width << ' ' << tmp_length;
     if (tmp_width <= 0 || tmp_length <= 0) {
         return;
@@ -280,14 +281,16 @@ void LED::change_settings(int32_t tmp_width, int32_t tmp_length) {
     throw ret;
 }
 
-void LED::render() {
+void led::render() {
     ws2811_render(ledstring);
 }
 
-int32_t LED::get_width() const {
+int32_t led::get_width() const {
     return width;
 }
 
-int32_t LED::get_length() const {
+int32_t led::get_length() const {
     return length;
 }
+
+}  // namespace led
