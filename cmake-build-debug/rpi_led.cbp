@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="rpi_led"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\lib\;CMake Files\lib\rpi_ws281x\;CMake Files\lib\parser\;CMake Files\lib\serial\;CMake Files\lib\player\;CMake Files\lib\LED\;CMake Files\example\;CMake Files\project\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rpi_ws281x">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/librpi_ws281x.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/Makefile&quot;  VERBOSE=1 rpi_ws281x"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rpi_ws281x/fast">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/librpi_ws281x.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/Makefile&quot;  VERBOSE=1 rpi_ws281x/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/rpi_ws281x/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="parser">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/libparser.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/parser/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/Makefile&quot;  VERBOSE=1 parser"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="parser/fast">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/libparser.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/parser/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/Makefile&quot;  VERBOSE=1 parser/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/parser/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="serial">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/libserial.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/serial/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/Makefile&quot;  VERBOSE=1 serial"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="serial/fast">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/libserial.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/serial/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/Makefile&quot;  VERBOSE=1 serial/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/serial/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="player">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/libplayer.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/player/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/Makefile&quot;  VERBOSE=1 player"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="player/fast">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/libplayer.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/player/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/Makefile&quot;  VERBOSE=1 player/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/player/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LED">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/libLED.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/LED/include"/>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/Makefile&quot;  VERBOSE=1 LED"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LED/fast">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/libLED.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/LED/include"/>
+					<Add directory="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/Makefile&quot;  VERBOSE=1 LED/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/lib/LED/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="player_rpi">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/player_rpi" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/Makefile&quot;  VERBOSE=1 player_rpi"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="player_rpi/fast">
+				<Option output="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/player_rpi" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/Makefile&quot;  VERBOSE=1 player_rpi/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/kira/Projects/ledmusicreworkembedded/cmake-build-debug/project/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/LED/src/LED.cpp">
+			<Option target="LED"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/parser/src/parser.cpp">
+			<Option target="parser"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/player/src/player.cpp">
+			<Option target="player"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/player/src/polygon.cpp">
+			<Option target="player"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/src/dma.c">
+			<Option target="rpi_ws281x"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/src/mailbox.c">
+			<Option target="rpi_ws281x"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/src/main.c">
+			<Option target="rpi_ws281x"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/src/pcm.c">
+			<Option target="rpi_ws281x"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/src/pwm.c">
+			<Option target="rpi_ws281x"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/src/rpihw.c">
+			<Option target="rpi_ws281x"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/src/ws2811.c">
+			<Option target="rpi_ws281x"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/serial/src/serial.cpp">
+			<Option target="serial"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/project/src/main.cpp">
+			<Option target="player_rpi"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/rpi_ws281x/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\rpi_ws281x\"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/parser/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\parser\"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/serial/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\serial\"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/player/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\player\"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/lib/LED/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\LED\"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/example/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\example\"/>
+		</Unit>
+		<Unit filename="/home/kira/Projects/ledmusicreworkembedded/project/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\project\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
