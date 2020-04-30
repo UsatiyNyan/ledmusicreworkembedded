@@ -8,6 +8,8 @@ namespace serial {
 class Connection {
  public:
     Connection(const std::string &serialport, int baud);
+    Connection(Connection &&other) noexcept;
+
     size_t write(const void *data, size_t size);
     void write_exact(const void *data, size_t size);
     size_t read(void *data, size_t size);

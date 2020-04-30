@@ -1,20 +1,20 @@
 find_package(Threads REQUIRED)
 
-add_subdirectory(base_exception)
-add_subdirectory(file_descriptor)
-add_subdirectory(rpi_ws281x)
-add_subdirectory(serial)
-add_subdirectory(geometry)
-add_subdirectory(led)
+add_subdirectory(base_exception) #
+add_subdirectory(file_descriptor) #
+add_subdirectory(serial) #
 add_subdirectory(parser)
-add_subdirectory(player)
+add_subdirectory(rpi_ws281x) #
+add_subdirectory(geometry) #
+add_subdirectory(led) #
+add_subdirectory(fixed_queue)
 
 set(LIBS base_exception
         file_descriptor
-        rpi_ws281x
         serial
+        parser
+        rpi_ws281x
         geometry
         led
-        parser
-        player
+        fixed_queue
          PARENT_SCOPE)

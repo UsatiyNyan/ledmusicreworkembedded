@@ -78,6 +78,10 @@ Connection::Connection(const std::string &serialport, int baud) {
     }
 }
 
+Connection::Connection(Connection &&other) noexcept {
+    this->_fd = std::move(other._fd);
+}
+
 size_t Connection::write(const void *data, size_t size) {
     ssize_t written = ::write(_fd.fd(), data, size);
     if (written == -1) {
@@ -107,7 +111,6 @@ void Connection::read_exact(void *data, size_t size) {
         read_n += read(static_cast<char *>(data) + read_n, size - read_n);
     }
 }
-
 void Connection::flush() {
     if (tcflush(_fd.fd(), TCIOFLUSH) == -1) {
         throw Exception("tcflush");

@@ -1,21 +1,14 @@
 #include "parser.h"
-#include <unistd.h>
-#include <sys/types.h>
-#include <cstring>
-#include <mutex>
-#include <termios.h>
 
-#define CFG_LENGTH 64
+namespace parser {
+Parser::Parser(serial::Connection &&connection)
+: _connection(std::move(connection)) {
 
-std::mutex g_mutex;
-
-
-static inline bool is_num(char b) {
-    return ('0' <= b && b <= '9');
 }
+}  // namespace parser
+
 
 static int read_with_markers(int32_t file, char s, char e, char *buf, int32_t length) {
-    memset(buf, 0, length + 1);
     char b;
     int32_t i = 0;
     bool in_progress = false;

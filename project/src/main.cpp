@@ -1,4 +1,5 @@
 #include <iostream>
+#include "fixed_queue.h"
 #include "player.h"
 
 #define DELAY 20000
