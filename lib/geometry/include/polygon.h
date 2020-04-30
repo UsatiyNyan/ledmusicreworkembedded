@@ -23,6 +23,12 @@ class Polygon {
     float _cos = 0;
     bool _ind_cos = false;
 };
+class Polygons {
+ public:
+
+ private:
+    std::vector<geometry::Polygon> _polygons;
+};
 }  // namespace geometry
 
 #endif //PLAYER_LIB_PLAYER_POLYGON_H_

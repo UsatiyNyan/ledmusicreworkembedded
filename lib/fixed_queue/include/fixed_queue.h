@@ -6,6 +6,7 @@
 #define RPI_LED_LIB_FIXED_QUEUE_INCLUDE_FIXED_QUEUE_H_
 
 #include <vector>
+#include <mutex>
 
 namespace container {
 template<typename T>
@@ -15,6 +16,7 @@ class FixedQueue {
         : _data(size, 0) {}
 
     void push_back(T &&item) {
+        std::unique_lock _(_mutex);
         if ((_back + 1) % _data.size() == _front) {
             _data[_front] = std::move(item);
             _front = (_front + 1) % _data.size();
@@ -24,13 +26,17 @@ class FixedQueue {
         }
         _back = (_back + 1) % _data.size();
     }
-    T &operator[](size_t i) {
+    T &operator[](size_t i) const {
         return _data[(_front + i) % _data.size()];
+    }
+    [[nodiscard]] const T &back() const {
+        return _data[_back];
     }
     [[nodiscard]] size_t size() const {
         return _current_size;
     }
  private:
+    std::mutex _mutex;
     std::vector<T> _data;
     size_t _front = 0;
     size_t _back = 0;

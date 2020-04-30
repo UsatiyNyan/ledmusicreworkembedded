@@ -1,7 +1,6 @@
 #include "serial.h"
 #include "base_exception.h"
 
-//#include <cstdio>    // Standard input/output definitions
 #include <unistd.h>   // UNIX standard function definitions
 #include <fcntl.h>    // File control definitions
 #include <termios.h>  // POSIX terminal control definitions

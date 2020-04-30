@@ -1,11 +1,13 @@
 #include "parser.h"
 
 namespace parser {
-Parser::Parser(serial::Connection &&connection)
-: _connection(std::move(connection)) {
-
-}
+Parser::Parser(serial::Connection &&connection, Config &config)
+    : _connection(std::move(connection)),
+      _config(config) {}
 }  // namespace parser
+
+
+
 
 
 static int read_with_markers(int32_t file, char s, char e, char *buf, int32_t length) {
@@ -149,6 +151,5 @@ void read_serial_port(int32_t file, Player &player) {
                 settings = parse_config(buf, player, sum);
             }
         }
-        tcflush(file, TCIOFLUSH);
     }
 }

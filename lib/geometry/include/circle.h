@@ -22,6 +22,12 @@ class Circle {
     Point _center;
     size_t _radius = 0;
 };
+class Circles {
+ public:
+
+ private:
+    std::vector<geometry::Circle> _circles;
+};
 }  // namespace geometry
 
 #endif //RPI_LED_LIB_POLYGON_INCLUDE_CIRCLE_H_

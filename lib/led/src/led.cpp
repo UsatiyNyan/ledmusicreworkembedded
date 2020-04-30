@@ -208,7 +208,7 @@ void WS281X::show_circle(const Circle &circle) {
             delta += 2 * (x - y);
             --y;
         }
-    } else {
+    } else {  // TODO: check 0.5
         float x = 0.5f;
         float y = std::floor(radius) + 0.5f;
         float rad = y;

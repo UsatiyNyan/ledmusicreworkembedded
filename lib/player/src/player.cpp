@@ -64,3 +64,36 @@ void show_leds(Player &player) {
         usleep(player.delay);
     }
 }
+
+void thread() {
+    if (cfg._changed) {
+        switch (cfg.get_mode()) {
+            case parser::FLAGS::BASIC:break;
+            case parser::FLAGS::CIRCLE:circles = Circles(cfg.center);
+                break;
+            case parser::FLAGS::POLYGON:polygons = Polygons(cfg.vertices);
+                break;
+            default: throw exception::Exception("wrong mode");
+        }
+        cfg._changed = false;
+    }
+    switch (cfg.get_mode()) {
+        case parser::FLAGS::BASIC:ws281x.simple_mode(rgb.back());
+            break;
+        case parser::FLAGS::CIRCLE:
+            for (size_t i = rgb.size(); i != 0; --i) {
+                circles[i].rgb = rgb[i];
+                ws281x.show_circle(circles[i]);
+            }
+            break;
+        case parser::FLAGS::POLYGON:
+            for (size_t i = rgb.size(); i != 0; --i) {
+                polygons[i].rgb = rgb[i];
+                ws281x.show_polygon(polygons[i]);
+            }
+            break;
+        default: throw exception::Exception("wrong mode");
+    }
+    ws281x.render();
+    sleep_as_from_bpm();
+}
