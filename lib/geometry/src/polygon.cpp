@@ -19,13 +19,10 @@ Polygon::Polygon(const std::vector<Point> &vertices, const clr::RGB &rgb)
         _cos = _vertices[0].x / abs;
     }
 }
-// if circle is expanding => send empty tr_matrix
-// TODO: new class Circle pls
 void Polygon::expand(const std::vector<Point> &tr_matrix) {
-    if (tr_matrix.size() != 2 or !tr_matrix.empty()) {
+    if (tr_matrix.size() != 2) {
         throw exception::Exception("wrong size of transformation matrix");
     }
-
     float coef = 0;
     if (_ind_cos) {
         coef = (_vertices[0].y + _cos) / _vertices[0].y;
@@ -36,11 +33,18 @@ void Polygon::expand(const std::vector<Point> &tr_matrix) {
         vertex.x *= coef;
         vertex.y *= coef;
     }
-    if (!tr_matrix.empty()) {
-        for (auto &vertex: _vertices) {
-            vertex.x = tr_matrix[0].x * vertex.x + tr_matrix[1].x * vertex.y;
-            vertex.y = tr_matrix[0].y * vertex.x + tr_matrix[1].y * vertex.y;
-        }
+    for (auto &vertex: _vertices) {
+        vertex.x = tr_matrix[0].x * vertex.x + tr_matrix[1].x * vertex.y;
+        vertex.y = tr_matrix[0].y * vertex.x + tr_matrix[1].y * vertex.y;
     }
+}
+const std::vector<Point> &Polygon::get_vertices() const {
+    return _vertices;
+}
+Point &Polygon::operator[](size_t i) {
+    return _vertices[i];
+}
+clr::RGB Polygon::get_color() const {
+    return _clr;
 }
 }  // namespace geometry

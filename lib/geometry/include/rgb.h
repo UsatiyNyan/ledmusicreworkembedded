@@ -13,18 +13,6 @@ struct RGB {
     uint8_t g;
     uint8_t b;
 };
-struct RGBParameters { // TODO:??????????/
-    int half_width;
-    int red_peak;
-    int green_peak;
-    int blue_peak;
-    float red_imp;
-    float green_imp;
-    float blue_imp;
-    float filter;
-    float sensitivity;
-    bool tweak_by_min;
-};
 }  // namespace colors
 
 #endif //LED_PLAYER_LIB_COLORS_INCLUDE_RGB_H_

@@ -6,19 +6,17 @@
 #define PLAYER_LIB_PLAYER_POLYGON_H_
 
 #include "rgb.h"
+#include "point.h"
 #include <vector>
 
 namespace geometry {
-struct Point {
-    float x;
-    float y;
-};
-
 class Polygon {
  public:
     Polygon(const std::vector<Point> &vertices, const clr::RGB & rgb);
     void expand(const std::vector<Point> &tr_matrix);
-
+    Point &operator[](size_t i);
+    [[nodiscard]] const std::vector<Point> &get_vertices() const;
+    [[nodiscard]] clr::RGB get_color() const;
  private:
     std::vector<Point> _vertices;
     clr::RGB _clr;

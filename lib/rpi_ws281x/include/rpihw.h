@@ -31,6 +31,8 @@
 #ifndef __RPIHW_H__
 #define __RPIHW_H__
 
+#include <stdint-gcc.h>
+
 typedef struct {
     uint32_t type;
 #define RPI_HWVER_TYPE_UNKNOWN                   0

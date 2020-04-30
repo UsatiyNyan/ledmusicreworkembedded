@@ -32,7 +32,7 @@ void Player::render() {
 
     for (unsigned kI = 0; kI < polygons->size(); ++kI) {
         auto polygon = polygons->at(kI);
-        // mode == 0 => polygon
+        // mode == 0 => geometry
         // mode == 1 => circle
         if (mode == 1) {
             led_.show_circle_on_led(polygon);
