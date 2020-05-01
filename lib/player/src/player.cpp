@@ -11,14 +11,7 @@ Player::Player(container::FixedQueue<clr::RGB> &rgb_queue,
     _circles = geometry::Circles(_cfg.get_center(), _cfg.get_2d_objs_amount());
     _polygons = geometry::Polygons(_cfg.get_vertices(), _cfg.get_2d_objs_amount(), _cfg.get_tr_matrix());
 }
-void Player::run() {
-    while (_run) {
-        job();
-    }
-}
-void Player::stop() {
-    _run = false;
-}
+
 void Player::job() {
     auto sleepy_time = std::chrono::system_clock::now() + _cfg.get_timeout();
     if (_cfg.changed != parser::NOTHING_CHANGED) {

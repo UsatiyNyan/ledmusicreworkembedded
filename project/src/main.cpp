@@ -3,7 +3,6 @@
 #include "parser.h"
 #include "led.h"
 #include "player.h"
-#include <thread>
 #include <iostream>
 
 constexpr size_t baud = 19200;
@@ -14,25 +13,11 @@ int main() {
     container::FixedQueue<clr::RGB> rgb_queue(10);
 
     player::Player led_player(rgb_queue, cfg);
-    std::thread player_thread([&led_player](){
-      led_player.run();
-    });
+    led_player.run();
     // run parser thread
     serial::Connection connection(serial_port, baud);
     parser::Parser reader(std::move(connection), cfg);
 
-    std::thread parser_thread([&reader](){
-      {
 
-//        while (true) {
-          rgb.push_back(reader.get_rgb());
-//            reader.start_parsing();
-//        }
-      }
-    });
-    led_player.stop();
-    player_thread.join();
-//    reader.stop();
-    parser_thread.join();
     return 0;
 }

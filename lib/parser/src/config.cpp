@@ -2,7 +2,8 @@
 // Created by kira on 01.05.2020.
 //
 
-#include <config.h>
+#include "config.h"
+#include <cmath>
 
 namespace parser {
 uint8_t parser::Config::get_mode() const {
@@ -15,9 +16,14 @@ const geometry::Point &Config::get_center() const {
 const std::vector<geometry::Point> &Config::get_vertices() const {
     return _vertices;
 }
-const std::vector<geometry::Point> &Config::get_tr_matrix() const {
-
-//    return ;
+std::vector<geometry::Point> &&Config::get_tr_matrix() const {
+    float cos = std::cos(_radian);
+    float sin = std::sin(_radian);
+    std::vector<geometry::Point> tr_matrix {
+        {cos, sin},
+        {-sin, cos}
+    };
+    return std::move(tr_matrix);
 }
 const std::chrono::milliseconds &Config::get_timeout() const {
     return _timeout;

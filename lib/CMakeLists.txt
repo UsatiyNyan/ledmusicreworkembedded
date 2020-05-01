@@ -9,6 +9,7 @@ add_subdirectory(geometry) #
 add_subdirectory(led) #
 add_subdirectory(fixed_queue)
 add_subdirectory(player)
+add_subdirectory(job_thread)
 
 set(LIBS base_exception
         file_descriptor
@@ -19,4 +20,5 @@ set(LIBS base_exception
         led
         fixed_queue
         player
+        job_thread
          PARENT_SCOPE)
