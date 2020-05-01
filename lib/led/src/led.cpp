@@ -37,6 +37,25 @@ WS281X::WS281X(size_t width, size_t length)
     }
 }
 
+WS281X::WS281X(WS281X &&other) noexcept {
+    if (this != &other) {
+        this->_led_diodes = other._led_diodes;
+        this->_width = other._width;
+        this->_length = other._length;
+        other._led_diodes = {};  // TODO: check work
+    }
+}
+
+WS281X &WS281X::operator=(WS281X &&other) noexcept {
+    if (this != &other) {
+        this->_led_diodes = other._led_diodes;
+        this->_width = other._width;
+        this->_length = other._length;
+        other._led_diodes = {};  // TODO: check work
+    }
+    return *this;
+}
+
 WS281X::~WS281X() {
     ws2811_fini(&_led_diodes);
 }
@@ -57,7 +76,7 @@ void WS281X::simple_mode(const clr::RGB &led_rgb) {
     }
 }
 
-void WS281X::draw_line(const Point &a_real, const Point &b_real, clr::RGB &led_rgb) {
+void WS281X::draw_line(const Point &a_real, const Point &b_real, const clr::RGB &led_rgb) {
     Point a = {a_real.x + 0.5f, a_real.y + 0.5f};
     Point b = {b_real.x + 0.5f, b_real.y + 0.5f};
     bool steep = (std::fabs(a.y - b.y) > std::fabs(a.x - b.x));
@@ -95,9 +114,8 @@ void WS281X::draw_line(const Point &a_real, const Point &b_real, clr::RGB &led_r
     }
 }
 
-void WS281X::show_polygon(const Polygon &polygon) {
+void WS281X::show_polygon(const Polygon &polygon, const clr::RGB &color) {
     const auto& vertices = polygon.get_vertices();
-    auto color = polygon.get_color();
     for (size_t i = 0; i < vertices.size(); ++i) {
         if (i == vertices.size() - 1) {
             draw_line(vertices[i], vertices[0], color);
@@ -114,8 +132,7 @@ static float check_missing(float rad) {
     }
     return -1;
 }
-
-void WS281X::draw_eight_points(float x0, float y0, float x, float y, clr::RGB &color) {  // TODO: Ask Anton
+void WS281X::draw_eight_points(float x0, float y0, float x, float y, const clr::RGB &color) {
     if (check_coord(std::round(x0 + x), std::round(y0 + y))) {
         _led_diodes.channel[0].leds[transform_coord(x0 + x, y0 + y)] =
             rgb_to_hex(color);
@@ -150,9 +167,8 @@ void WS281X::draw_eight_points(float x0, float y0, float x, float y, clr::RGB &c
     }
 }
 
-void WS281X::show_circle(const Circle &circle) {
+void WS281X::show_circle(const Circle &circle, const clr::RGB &color) {
     float radius = circle.get_radius();
-    auto color = circle.get_color();
     Point center = circle.get_center();
 
     float x0 = center.x + 0.5f;
@@ -249,7 +265,6 @@ void WS281X::show_circle(const Circle &circle) {
 void WS281X::render() {
     ws2811_render(&_led_diodes);
 }
-
 size_t WS281X::get_width() const {
     return _width;
 }

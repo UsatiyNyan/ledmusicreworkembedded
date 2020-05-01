@@ -2,29 +2,37 @@
 #include "serial.h"
 #include "parser.h"
 #include "led.h"
+#include "player.h"
+#include <thread>
 #include <iostream>
-#include <base_exception.h>
 
-constexpr size_t delay = 20000;
 constexpr size_t baud = 19200;
 constexpr const char * serial_port  = "/dev/serial0";
 
 int main() {
     parser::Config cfg;
-    container::FixedQueue<clr::RGB> rgb(10);  // TODO: safe fixed queue
+    container::FixedQueue<clr::RGB> rgb_queue(10);
+
+    player::Player led_player(rgb_queue, cfg);
+    std::thread player_thread([&led_player](){
+      led_player.run();
+    });
     // run parser thread
-    // initialize Player?? or smth with Circles and Polygons
-    {
-        serial::Connection connection(serial_port, baud);
-        parser::Parser reader(std::move(connection), cfg);
+    serial::Connection connection(serial_port, baud);
+    parser::Parser reader(std::move(connection), cfg);
+
+    std::thread parser_thread([&reader](){
+      {
+
 //        while (true) {
-            rgb.push_back(reader.get_rgb());
+          rgb.push_back(reader.get_rgb());
 //            reader.start_parsing();
 //        }
-    }
-    Circles circles;
-    Polygons polygons;
-    led::WS281X ws281x(8, 32);
-    // run player::thread
+      }
+    });
+    led_player.stop();
+    player_thread.join();
+//    reader.stop();
+    parser_thread.join();
     return 0;
 }

@@ -5,29 +5,30 @@
 #ifndef PLAYER_LIB_PLAYER_POLYGON_H_
 #define PLAYER_LIB_PLAYER_POLYGON_H_
 
-#include "rgb.h"
 #include "point.h"
 #include <vector>
 
 namespace geometry {
 class Polygon {
  public:
-    Polygon(const std::vector<Point> &vertices, const clr::RGB & rgb);
+    explicit Polygon(const std::vector<Point> &vertices);
     void expand(const std::vector<Point> &tr_matrix);
     Point &operator[](size_t i);
     [[nodiscard]] const std::vector<Point> &get_vertices() const;
-    [[nodiscard]] clr::RGB get_color() const;
  private:
     std::vector<Point> _vertices;
-    clr::RGB _clr;
     float _cos = 0;
     bool _ind_cos = false;
 };
 class Polygons {
  public:
-
+    Polygons() = default;
+    Polygons(const std::vector<Point> &vertices, size_t size, const std::vector<Point> &tr_matrix);
+    Polygons(Polygons &&other) noexcept;
+    Polygons &operator=(Polygons &&other) noexcept;
+    Polygon &operator[](size_t i);
  private:
-    std::vector<geometry::Polygon> _polygons;
+    std::vector<Polygon> _polygons;
 };
 }  // namespace geometry
 

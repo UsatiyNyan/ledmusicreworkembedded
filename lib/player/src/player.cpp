@@ -1,99 +1,66 @@
 #include "player.h"
-#include "serial.h"
-#include "uart.h"
-#include "LED.h"
-#define BAUDRATE 19200
+#include <chrono>
 
-Player::Player(size_t delay, const char *device) :
-    delay(delay),
-    device(device),
-    rgb({0, 0, 0}),
-    polygons(new fixed_queue<Polygon *>(64)),
-    verteces(3),
-    base_polygon(new Polygon(0, 0, 0, 0)),
-    tr_matrix(new Point[2]),
-    mode(2),
-    led_(8, 32) {
-    tr_matrix[0].x = 1;
-    tr_matrix[0].y = 0;
-    tr_matrix[1].x = 0;
-    tr_matrix[1].y = 1;
+
+namespace player {
+Player::Player(container::FixedQueue<clr::RGB> &rgb_queue,
+               parser::Config &config)
+    : _rgb_queue(rgb_queue),
+      _cfg(config),
+      _ws281x(_cfg.get_width(), _cfg.get_length()) {
+    _circles = geometry::Circles(_cfg.get_center(), _cfg.get_2d_objs_amount());
+    _polygons = geometry::Polygons(_cfg.get_vertices(), _cfg.get_2d_objs_amount(), _cfg.get_tr_matrix());
 }
-
-Player::~Player() {
-    delete base_polygon;
-    delete[] tr_matrix;
-}
-
-void Player::render() {
-    auto *tmp = new Polygon(verteces, rgb.r, rgb.g, rgb.b);
-    tmp->set_items(base_polygon->vectors, verteces);
-    polygons->push_back(tmp);
-
-    for (unsigned kI = 0; kI < polygons->size(); ++kI) {
-        auto polygon = polygons->at(kI);
-        // mode == 0 => geometry
-        // mode == 1 => circle
-        if (mode == 1) {
-            led_.show_circle_on_led(polygon);
-            polygon->radius += 1;
-        } else {
-            led_.show_figure_on_led(polygon);
-            polygon->expand();
-        }
+void Player::run() {
+    while (_run) {
+        job();
     }
 }
-
-void serial_interface(Player &player) {
-    int32_t filed = serialport_init(player.device.c_str(), BAUDRATE);
-    serialport_flush(filed);
-    read_serial_port(filed, player);
-    serialport_flush(filed);
-    serialport_close(filed);
+void Player::stop() {
+    _run = false;
 }
-
-void show_leds(Player &player) {
-    while (true) {
-        // mode == 2 => basic
-        if (player.mode == 2) {
-            player.led_.show_led_on_pi(player.rgb);
-        } else {
-            player.render();
-        }
-        player.led_.render();
-        usleep(player.delay);
-    }
-}
-
-void thread() {
-    if (cfg._changed) {
-        switch (cfg.get_mode()) {
-            case parser::FLAGS::BASIC:break;
-            case parser::FLAGS::CIRCLE:circles = Circles(cfg.center);
+void Player::job() {
+    auto sleepy_time = std::chrono::system_clock::now() + _cfg.get_timeout();
+    if (_cfg.changed != parser::NOTHING_CHANGED) {
+        std::unique_lock _(_mutex);
+        switch (_cfg.changed) {
+            case parser::BPM:
+            case parser::NOTHING_CHANGED:
+            case parser::BASIC:break;
+            case parser::CIRCLE:_circles = geometry::Circles(_cfg.get_center(), _cfg.get_2d_objs_amount());
                 break;
-            case parser::FLAGS::POLYGON:polygons = Polygons(cfg.vertices);
+            case parser::ROTATION:
+            case parser::POLYGON:_polygons = geometry::Polygons(_cfg.get_vertices(),
+                                                                _cfg.get_2d_objs_amount(),
+                                                                _cfg.get_tr_matrix());
                 break;
-            default: throw exception::Exception("wrong mode");
+            case parser::LENGTH_AND_WIDTH:_ws281x = led::WS281X(_cfg.get_width(), _cfg.get_length());
+                _circles = geometry::Circles(_cfg.get_center(), _cfg.get_2d_objs_amount());
+                _polygons =
+                    geometry::Polygons(_cfg.get_vertices(), _cfg.get_2d_objs_amount(), _cfg.get_tr_matrix());
+                break;
+            default: throw exception::Exception("wrong config: " + std::to_string(_cfg.changed));
         }
-        cfg._changed = false;
+        _cfg.changed = parser::NOTHING_CHANGED;
     }
-    switch (cfg.get_mode()) {
-        case parser::FLAGS::BASIC:ws281x.simple_mode(rgb.back());
+
+    switch (_cfg.get_mode()) {
+        case parser::BASIC:
+            _ws281x.simple_mode(_rgb_queue.back());
             break;
-        case parser::FLAGS::CIRCLE:
-            for (size_t i = rgb.size(); i != 0; --i) {
-                circles[i].rgb = rgb[i];
-                ws281x.show_circle(circles[i]);
+        case parser::CIRCLE:
+            for (size_t i = _rgb_queue.size(); i != 0; --i) {
+                _ws281x.show_circle(_circles[i], _rgb_queue[i]);
             }
             break;
-        case parser::FLAGS::POLYGON:
-            for (size_t i = rgb.size(); i != 0; --i) {
-                polygons[i].rgb = rgb[i];
-                ws281x.show_polygon(polygons[i]);
+        case parser::POLYGON:
+            for (size_t i = _rgb_queue.size(); i != 0; --i) {
+                _ws281x.show_polygon(_polygons[i], _rgb_queue[i]);
             }
             break;
         default: throw exception::Exception("wrong mode");
     }
-    ws281x.render();
-    sleep_as_from_bpm();
+    _ws281x.render();
+    std::this_thread::sleep_until(sleepy_time);
 }
+}  // namespace player

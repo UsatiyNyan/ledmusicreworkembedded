@@ -6,8 +6,6 @@
 #include <string>
 
 namespace parser {
-constexpr uint8_t BEGIN = '<';
-constexpr uint8_t END = '>';
 class Parser {
  public:
     explicit Parser(serial::Connection &&connection, Config &config);

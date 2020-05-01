@@ -1,38 +1,32 @@
 #ifndef __PLAYERH__
 #define __PLAYERH__
 
+#include "parser.h"
+#include "base_exception.h"
+#include "led.h"
+#include "fixed_queue.h"
+
 #include <thread>
 #include <string>
-#include <cstdint>
-#include <cmath>
-#include "fixed_queue.h"
-#include "LED.h"
-#include "polygon.h"
 
 
+namespace player {
 class Player {
-public:
-    explicit Player(size_t delay, const char *device);
-    ~Player();
-    void render();
+ public:
+    Player(container::FixedQueue<clr::RGB> &rgb_queue, parser::Config &config);
+    void run();
+    void stop();
+ private:
+    void job();
 
-    size_t delay;
-    std::string device;
-    RGB rgb;
-    fixed_queue<Polygon *> *polygons;
-    int32_t verteces;
-    Polygon *base_polygon;
-    Point *tr_matrix;
-    int32_t mode;
-    LED led_;
-
-private:
-    // singleton
-    Player &operator=(Player const &);
-    Player(Player const &);
+    geometry::Circles _circles{};
+    geometry::Polygons _polygons{};
+    parser::Config &_cfg;
+    container::FixedQueue<clr::RGB> &_rgb_queue;
+    led::WS281X _ws281x;
+    std::atomic<bool> _run = true;
+    std::mutex _mutex;
 };
-
-void serial_interface(Player &player);
-void show_leds(Player &player);
+}  // namespace player
 
 #endif

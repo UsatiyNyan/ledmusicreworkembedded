@@ -6,27 +6,28 @@
 #define RPI_LED_LIB_POLYGON_INCLUDE_CIRCLE_H_
 
 #include "point.h"
-#include "rgb.h"
-#include <cstddef>
+#include <vector>
 
 namespace geometry {
 class Circle {
  public:
-    Circle(const Point &center, const clr::RGB & rgb);
+    explicit Circle(const Point &center);
     void expand();
     [[nodiscard]] Point get_center() const;
-    [[nodiscard]] clr::RGB get_color() const;
     [[nodiscard]] size_t get_radius() const;
  private:
-    clr::RGB _clr;
     Point _center;
     size_t _radius = 0;
 };
 class Circles {
  public:
-
+    Circles() = default;
+    Circles(const Point &center, size_t size);
+    Circles(Circles &&other) noexcept;
+    Circles &operator=(Circles &&other) noexcept;
+    Circle &operator[](size_t i);
  private:
-    std::vector<geometry::Circle> _circles;
+    std::vector<Circle> _circles{};
 };
 }  // namespace geometry
 

@@ -8,6 +8,7 @@ add_subdirectory(rpi_ws281x) #
 add_subdirectory(geometry) #
 add_subdirectory(led) #
 add_subdirectory(fixed_queue)
+add_subdirectory(player)
 
 set(LIBS base_exception
         file_descriptor
@@ -17,4 +18,5 @@ set(LIBS base_exception
         geometry
         led
         fixed_queue
+        player
          PARENT_SCOPE)
