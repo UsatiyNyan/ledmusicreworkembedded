@@ -18,5 +18,6 @@ int main() {
             "r: " << static_cast<int>(buf[2]) << " | "
             "g: " << static_cast<int>(buf[3]) << " | "
             "b: " << static_cast<int>(buf[4]) << std::endl;
+        connection.write(buf.data(), 2);
     }
 }
