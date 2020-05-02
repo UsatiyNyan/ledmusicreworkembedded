@@ -10,8 +10,7 @@
 #include <thread>
 #include <string>
 
-
-namespace player {
+namespace loop {
 class Player : public executor::JobThread {
  public:
     Player(container::FixedQueue<clr::RGB> &rgb_queue, parser::Config &config);
@@ -25,6 +24,6 @@ class Player : public executor::JobThread {
     led::WS281X _ws281x;
     std::mutex _mutex;
 };
-}  // namespace player
+}  // namespace executor
 
 #endif

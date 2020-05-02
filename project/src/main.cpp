@@ -8,7 +8,7 @@ int main() {
     parser::Config cfg;
     container::FixedQueue<clr::RGB> rgb_queue(cfg.get_2d_objs_amount());
 
-    player::Player led_player(rgb_queue, cfg);
+    loop::Player led_player(rgb_queue, cfg);
     led_player.run();
 
     parser::Parser reader(rgb_queue, cfg);

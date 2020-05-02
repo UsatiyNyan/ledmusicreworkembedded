@@ -8,7 +8,6 @@
 #include <atomic>
 #include <thread>
 
-
 namespace executor {
 class JobThread {
  public:

@@ -6,7 +6,6 @@
 #include "base_exception.h"
 #include <cmath>
 
-
 namespace geometry {
 Polygon::Polygon(const std::vector<Point> &vertices)
     : _vertices(vertices.cbegin(), vertices.cend()) {

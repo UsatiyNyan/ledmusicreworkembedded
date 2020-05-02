@@ -19,7 +19,7 @@ const std::vector<geometry::Point> &Config::get_vertices() const {
 std::vector<geometry::Point> &&Config::get_tr_matrix() const {
     float cos = std::cos(_radian);
     float sin = std::sin(_radian);
-    std::vector<geometry::Point> tr_matrix {
+    std::vector<geometry::Point> tr_matrix{
         {cos, sin},
         {-sin, cos}
     };

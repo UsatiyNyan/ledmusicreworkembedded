@@ -1,8 +1,7 @@
 #include "player.h"
 #include <chrono>
 
-
-namespace player {
+namespace loop {
 Player::Player(container::FixedQueue<clr::RGB> &rgb_queue,
                parser::Config &config)
     : _rgb_queue(rgb_queue),
@@ -26,13 +25,15 @@ void Player::job() {
             case parser::CIRCLE:_circles = geometry::Circles(_cfg.get_center(), _cfg.get_2d_objs_amount());
                 break;
             case parser::ROTATION:
-            case parser::POLYGON:_polygons = geometry::Polygons(_cfg.get_vertices(),
-                                                                _cfg.get_2d_objs_amount(),
-                                                                _cfg.get_tr_matrix());
+            case parser::POLYGON:
+                _polygons = geometry::Polygons(_cfg.get_vertices(),
+                                               _cfg.get_2d_objs_amount(),
+                                               _cfg.get_tr_matrix());
                 break;
             case parser::LENGTH_AND_WIDTH:_ws281x = led::WS281X(_cfg.get_width(), _cfg.get_length());
                 _circles = geometry::Circles(_cfg.get_center(), _cfg.get_2d_objs_amount());
-                _polygons = geometry::Polygons(_cfg.get_vertices(), _cfg.get_2d_objs_amount(), _cfg.get_tr_matrix());
+                _polygons =
+                    geometry::Polygons(_cfg.get_vertices(), _cfg.get_2d_objs_amount(), _cfg.get_tr_matrix());
                 break;
             default: throw exception::Exception("wrong config: " + std::to_string(_cfg.changed));
         }
@@ -40,8 +41,7 @@ void Player::job() {
     }
 
     switch (_cfg.get_mode()) {
-        case parser::BASIC:
-            _ws281x.simple_mode(_rgb_queue.back());
+        case parser::BASIC:_ws281x.simple_mode(_rgb_queue.back());
             break;
         case parser::CIRCLE:
             for (size_t i = _rgb_queue.size(); i != 0; --i) {
@@ -58,4 +58,4 @@ void Player::job() {
     _ws281x.render();
     std::this_thread::sleep_until(sleepy_time);
 }
-}  // namespace player
+}  // namespace executor
