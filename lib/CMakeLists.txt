@@ -21,4 +21,4 @@ set(LIBS base_exception
         fixed_queue
         player
         job_thread
-         PARENT_SCOPE)
+        PARENT_SCOPE)

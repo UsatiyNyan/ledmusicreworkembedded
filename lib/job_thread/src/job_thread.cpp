@@ -10,7 +10,7 @@ JobThread::~JobThread() {
     _job_thread.join();
 }
 void JobThread::run() {
-    _job_thread = std::thread([this](){
+    _job_thread = std::thread([this]() {
       while (_run) {
           job();
       }

@@ -8,11 +8,10 @@
 
 using exception::Exception;
 
-
 namespace fd {
 FileDescriptor::FileDescriptor(int fd) : _fd(fd) {}
 
-FileDescriptor::FileDescriptor(FileDescriptor && other) noexcept {
+FileDescriptor::FileDescriptor(FileDescriptor &&other) noexcept {
     if (this->_fd == other._fd) {
         return;
     }
@@ -35,7 +34,7 @@ void FileDescriptor::close() {
     _fd = -1;
 }
 
-FileDescriptor &FileDescriptor::operator=(FileDescriptor && other) noexcept {
+FileDescriptor &FileDescriptor::operator=(FileDescriptor &&other) noexcept {
     if (this->_fd == other._fd) {
         return *this;
     }

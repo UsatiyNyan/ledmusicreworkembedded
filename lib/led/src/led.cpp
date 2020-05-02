@@ -11,7 +11,6 @@
 
 using exception::Exception;
 
-
 namespace led {
 static int rgb_to_hex(const clr::RGB &led_rgb) {
     return ((led_rgb.g & 0xff) << 16) + ((led_rgb.r & 0xff) << 8) + (led_rgb.b & 0xff);
@@ -115,7 +114,7 @@ void WS281X::draw_line(const Point &a_real, const Point &b_real, const clr::RGB 
 }
 
 void WS281X::show_polygon(const Polygon &polygon, const clr::RGB &color) {
-    const auto& vertices = polygon.get_vertices();
+    const auto &vertices = polygon.get_vertices();
     for (size_t i = 0; i < vertices.size(); ++i) {
         if (i == vertices.size() - 1) {
             draw_line(vertices[i], vertices[0], color);

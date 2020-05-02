@@ -15,7 +15,6 @@
 
 using namespace geometry;
 
-
 namespace led {
 class WS281X {
  public:

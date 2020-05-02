@@ -7,18 +7,17 @@
 
 using exception::Exception;
 
-
 namespace serial {
 static uint32_t int_to_baud(int baud) {
     switch (baud) {
         case 4800:return B4800;
         case 9600:return B9600;
 #ifdef B14400
-        case 14400:return B14400;
+            case 14400:return B14400;
 #endif
         case 19200:return B19200;
 #ifdef B28800
-        case 28800:return B28800;
+            case 28800:return B28800;
 #endif
         case 38400:return B38400;
         case 57600:return B57600;
@@ -120,7 +119,7 @@ void Connection::flush_input() {
         throw Exception("tcflush I");
     }
 }
-void Connection::flush_output(){
+void Connection::flush_output() {
     if (tcflush(_fd.fd(), TCOFLUSH) == -1) {
         throw Exception("tcflush O");
     }
