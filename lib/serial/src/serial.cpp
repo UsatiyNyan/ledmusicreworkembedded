@@ -112,7 +112,17 @@ void Connection::read_exact(void *data, size_t size) {
 }
 void Connection::flush() {
     if (tcflush(_fd.fd(), TCIOFLUSH) == -1) {
-        throw Exception("tcflush");
+        throw Exception("tcflush IO");
+    }
+}
+void Connection::flush_input() {
+    if (tcflush(_fd.fd(), TCIFLUSH) == -1) {
+        throw Exception("tcflush I");
+    }
+}
+void Connection::flush_output(){
+    if (tcflush(_fd.fd(), TCOFLUSH) == -1) {
+        throw Exception("tcflush O");
     }
 }
 } // namespace serial

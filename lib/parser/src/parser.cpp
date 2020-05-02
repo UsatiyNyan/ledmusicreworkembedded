@@ -7,8 +7,8 @@
 using namespace std::chrono_literals;
 
 constexpr size_t baud = 19200;
-constexpr const char * serial_port  = "/dev/ttyUSB0";
-//constexpr const char * serial_port  = "/dev/serial0";
+//constexpr const char * serial_port  = "/dev/ttyUSB0";
+constexpr const char * serial_port  = "/dev/serial0";
 
 namespace parser {
 Parser::Parser(container::FixedQueue<clr::RGB> &rgb_queue, Config &config)
@@ -42,16 +42,15 @@ void Parser::job() {
         case LENGTH_AND_WIDTH:
             parse_length_and_width(checksum);
             break;
-        default: // TODO: FLUSH input data
-            _connection.read(_read_buf.data(), 128);
+        default:
+            _connection.flush_input();
             break;
     }
     _connection.write_exact(_write_buf.data(), 2);
 }
 void Parser::parse_basic(uint8_t checksum) {
     if ((checksum ^ BASIC) != 0xFF) {
-        // TODO: flush
-        _connection.read(_read_buf.data(), 128);
+        _connection.flush_input();
         return;
     }
     _config._mode = BASIC;
@@ -63,8 +62,7 @@ void Parser::parse_rgb(uint8_t checksum) {
         checksum ^= _read_buf[i];
     }
     if ((checksum ^ RGB) != 0xFF) {
-        // TODO:flush
-        _connection.read(_read_buf.data(), 128);
+        _connection.flush_input();
         return;
     }
     _rgb_queue.push_back({
@@ -79,8 +77,7 @@ void Parser::parse_circle(uint8_t checksum) {
         checksum ^= _read_buf[i];
     }
     if ((checksum ^ CIRCLE) != 0xFF) {
-        // TODO:flush
-        _connection.read(_read_buf.data(), 128);
+        _connection.flush_input();
         return;
     }
     _config._mode = CIRCLE;
@@ -96,8 +93,7 @@ void Parser::parse_polygon(uint8_t checksum) {
         checksum ^= _read_buf[i];
     }
     if ((checksum ^ POLYGON) != 0xFF) {
-        // TODO:flush
-        _connection.read(_read_buf.data(), 128);
+        _connection.flush_input();
         return;
     }
     vertices_amount /= 2;
@@ -116,8 +112,7 @@ void Parser::parse_bpm(uint8_t checksum) {
         checksum ^= _read_buf[i];
     }
     if ((checksum ^ BPM) != 0xFF) {
-        // TODO:flush
-        _connection.read(_read_buf.data(), 128);
+        _connection.flush_input();
         return;
     }
     uint16_t bpm = (static_cast<uint16_t>(_read_buf[1]) << 1) | _read_buf[0];
@@ -130,8 +125,7 @@ void Parser::parse_rotation(uint8_t checksum) {
         checksum ^= _read_buf[i];
     }
     if ((checksum ^ ROTATION) != 0xFF) {
-        // TODO:flush
-        _connection.read(_read_buf.data(), 128);
+        _connection.flush_input();
         return;
     }
     _config._radian = _read_buf[0];
@@ -143,8 +137,7 @@ void Parser::parse_length_and_width(uint8_t checksum) {
         checksum ^= _read_buf[i];
     }
     if ((checksum ^ LENGTH_AND_WIDTH) != 0xFF) {
-        // TODO:flush
-        _connection.read(_read_buf.data(), 128);
+        _connection.flush_input();
         return;
     }
     _config._length = (static_cast<uint16_t>(_read_buf[1]) << 1) | _read_buf[0];

@@ -15,6 +15,8 @@ class Connection {
     size_t read(void *data, size_t size);
     void read_exact(void *data, size_t size);
     void flush();
+    void flush_input();
+    void flush_output();
  private:
     fd::FileDescriptor _fd;
 };
