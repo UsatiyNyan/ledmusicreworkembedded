@@ -19,7 +19,7 @@ Polygon::Polygon(const std::vector<Point> &vertices)
 }
 void Polygon::expand(const std::vector<Point> &tr_matrix) {
     if (tr_matrix.size() != 2) {
-        throw exception::Exception("wrong size of transformation matrix");
+        throw exception::Exception("wrong size of transformation matrix: " + std::to_string(tr_matrix.size()));
     }
     float coef = 0;
     if (_ind_cos) {

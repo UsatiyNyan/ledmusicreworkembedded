@@ -1,5 +1,6 @@
 #!/bin/bash
 
-while true; do 
-	sudo /home/pi/HackMoscow/build/out/player_usage
-done
+cd build/project || bash make.sh && bash run.sh
+./rpi_led
+
+
