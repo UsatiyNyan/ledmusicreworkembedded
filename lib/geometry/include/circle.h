@@ -21,13 +21,12 @@ class Circle {
 };
 class Circles {
  public:
-    Circles() = default;
     Circles(const Point &center, size_t size);
     Circles(Circles &&other) noexcept;
     Circles &operator=(Circles &&other) noexcept;
     Circle &operator[](size_t i);
  private:
-    std::vector<Circle> _circles{};
+    std::vector<Circle> _circles;
 };
 }  // namespace geometry
 

@@ -44,7 +44,7 @@ class Config {
 
     std::atomic<uint8_t> changed = NOTHING_CHANGED;
  private:
-    std::vector<geometry::Point> _vertices;
+    std::vector<geometry::Point> _vertices = {{-1, -1}, {-1, 1}, {2, 0}};
     geometry::Point _center = {0, 0};
     size_t _length = 32;
     size_t _width = 8;

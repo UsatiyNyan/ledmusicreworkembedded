@@ -18,8 +18,8 @@ class Player : public executor::JobThread {
  private:
     void job() override;
 
-    geometry::Circles _circles{};
-    geometry::Polygons _polygons{};
+    geometry::Circles _circles;
+    geometry::Polygons _polygons;
     parser::Config &_cfg;
     container::FixedQueue<clr::RGB> &_rgb_queue;
     led::WS281X _ws281x;

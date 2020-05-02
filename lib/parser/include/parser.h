@@ -11,7 +11,7 @@ class Parser {
     explicit Parser(serial::Connection &&connection, Config &config);
 
  private:
-    clr::RGB _rgb;
+    clr::RGB _rgb{};
     Config &_config;
     serial::Connection _connection;
 };

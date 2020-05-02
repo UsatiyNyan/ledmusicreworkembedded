@@ -7,9 +7,12 @@ Player::Player(container::FixedQueue<clr::RGB> &rgb_queue,
                parser::Config &config)
     : _rgb_queue(rgb_queue),
       _cfg(config),
-      _ws281x(_cfg.get_width(), _cfg.get_length()) {
-    _circles = geometry::Circles(_cfg.get_center(), _cfg.get_2d_objs_amount());
-    _polygons = geometry::Polygons(_cfg.get_vertices(), _cfg.get_2d_objs_amount(), _cfg.get_tr_matrix());
+      _ws281x(_cfg.get_width(), _cfg.get_length()),
+      _circles(geometry::Circles(config.get_center(),
+                                 config.get_2d_objs_amount())),
+      _polygons(geometry::Polygons(config.get_vertices(),
+                                   config.get_2d_objs_amount(),
+                                   config.get_tr_matrix())) {
 }
 
 void Player::job() {

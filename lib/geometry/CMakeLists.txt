@@ -1,6 +1,6 @@
-add_library(polygon STATIC
+add_library(geometry STATIC
         src/polygon.cpp
         src/circle.cpp
         )
-target_include_directories(polygon PUBLIC include)
-target_link_libraries(polygon PUBLIC base_exception)
+target_include_directories(geometry PUBLIC include)
+target_link_libraries(geometry PUBLIC base_exception)

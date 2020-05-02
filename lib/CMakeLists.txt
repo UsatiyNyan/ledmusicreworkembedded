@@ -7,9 +7,9 @@ add_subdirectory(parser)
 add_subdirectory(rpi_ws281x) #
 add_subdirectory(geometry) #
 add_subdirectory(led) #
-add_subdirectory(fixed_queue)
-add_subdirectory(player)
-add_subdirectory(job_thread)
+add_subdirectory(fixed_queue) #
+add_subdirectory(job_thread) #
+add_subdirectory(player) #
 
 set(LIBS base_exception
         file_descriptor

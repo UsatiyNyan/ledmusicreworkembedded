@@ -22,7 +22,6 @@ class Polygon {
 };
 class Polygons {
  public:
-    Polygons() = default;
     Polygons(const std::vector<Point> &vertices, size_t size, const std::vector<Point> &tr_matrix);
     Polygons(Polygons &&other) noexcept;
     Polygons &operator=(Polygons &&other) noexcept;
