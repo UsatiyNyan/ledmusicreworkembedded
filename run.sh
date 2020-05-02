@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd build/project || bash make.sh && bash run.sh
+cd build/project || ./make.sh && ./run.sh
 sudo ./rpi_led
 
 
