@@ -36,7 +36,7 @@ class Config {
     [[nodiscard]] uint8_t get_mode() const;
     [[nodiscard]] const geometry::Point &get_center() const;
     [[nodiscard]] const std::vector<geometry::Point> &get_vertices() const;
-    [[nodiscard]] std::vector<geometry::Point> &&get_tr_matrix() const;
+    [[nodiscard]] std::vector<geometry::Point> get_tr_matrix() const;
     [[nodiscard]] const std::chrono::milliseconds &get_timeout() const;
     [[nodiscard]] size_t get_width() const;
     [[nodiscard]] size_t get_length() const;
