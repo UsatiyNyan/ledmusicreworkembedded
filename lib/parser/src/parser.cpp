@@ -3,7 +3,6 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
-#include <armadillo_bits/Mat_bones.hpp>
 
 using namespace std::chrono_literals;
 
