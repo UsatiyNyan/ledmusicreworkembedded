@@ -32,8 +32,7 @@ void Player::job() {
                 break;
             case parser::LENGTH_AND_WIDTH:_ws281x = led::WS281X(_cfg.get_width(), _cfg.get_length());
                 _circles = geometry::Circles(_cfg.get_center(), _cfg.get_2d_objs_amount());
-                _polygons =
-                    geometry::Polygons(_cfg.get_vertices(), _cfg.get_2d_objs_amount(), _cfg.get_tr_matrix());
+                _polygons = geometry::Polygons(_cfg.get_vertices(), _cfg.get_2d_objs_amount(), _cfg.get_tr_matrix());
                 break;
             default: throw exception::Exception("wrong config: " + std::to_string(_cfg.changed));
         }
