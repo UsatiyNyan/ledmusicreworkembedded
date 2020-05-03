@@ -48,12 +48,12 @@ void Player::job() {
 //                _ws281x.show_circle(_circles[i], _rgb_queue[i]);
 //            }
             for (size_t i = 0; i != _rgb_queue.size(); ++i) {
-                _ws281x.show_circle(_circles[i], _rgb_queue[_rgb_queue.size() - i]);
+                _ws281x.show_circle(_circles[i], _rgb_queue.at_reversed(i));
             }
             break;
         case parser::POLYGON:
             for (size_t i = 0; i != _rgb_queue.size(); ++i) {
-                _ws281x.show_polygon(_polygons[i], _rgb_queue[_rgb_queue.size() - i]);
+                _ws281x.show_polygon(_polygons[i], _rgb_queue.at_reversed(i));
             }
             break;
         default: throw exception::Exception("wrong mode");

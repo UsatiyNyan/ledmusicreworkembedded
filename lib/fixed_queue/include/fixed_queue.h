@@ -23,6 +23,9 @@ class FixedQueue {
     T const &operator[](size_t i) const {
         return _data[(_back + i) % _data.size()];
     }
+    T const &at_reversed(size_t i) const {
+        return _data[(_back - 1 - i) % _data.size()];
+    }
     [[nodiscard]] const T &back() const {
         return _data[(_back - 1) % _data.size()];
     }
