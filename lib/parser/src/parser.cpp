@@ -30,12 +30,11 @@ void Parser::job() {
         _read_buf.push_back(buf);
     } while (buf != END);
 
-    for (auto & byte: _read_buf) {
-        std::cout << static_cast<int>(byte) << " | ";
+    for (size_t i = 0; _read_buf[i] != END ; ++i) {
+        std::cout << static_cast<int>(_read_buf[i]) << " | ";
     }
     std::cout << std::endl;
-//
-//
+
 //    uint8_t checksum = _read_buf[0];
 //    uint8_t flag = _read_buf[1];
 //    switch (flag) {
