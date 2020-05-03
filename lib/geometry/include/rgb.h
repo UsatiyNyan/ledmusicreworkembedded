@@ -9,9 +9,9 @@
 
 namespace clr {
 struct RGB {
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
+    unsigned r;
+    unsigned g;
+    unsigned b;
 };
 }  // namespace colors
 
