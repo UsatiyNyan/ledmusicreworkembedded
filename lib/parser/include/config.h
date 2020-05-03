@@ -50,7 +50,7 @@ class Config {
     size_t _width = 8;
     float _radian = 0;
     std::chrono::milliseconds _timeout = 25ms;
-    uint8_t _mode = FLAGS::CIRCLE;
+    uint8_t _mode = FLAGS::POLYGON;
 };
 }  // namespace parser
 
