@@ -44,9 +44,6 @@ void Player::job() {
         case parser::BASIC:_ws281x.simple_mode(_rgb_queue.back());
             break;
         case parser::CIRCLE:
-//            for (int i = static_cast<int>(_rgb_queue.size()) - 1; i >= 0; --i) {
-//                _ws281x.show_circle(_circles[i], _rgb_queue[i]);
-//            }
             for (int i = static_cast<int>(_rgb_queue.size()) - 1; i >= 0; --i) {
                 _ws281x.show_circle(_circles[i], _rgb_queue.at_reversed(i));
             }
