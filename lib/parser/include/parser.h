@@ -14,6 +14,9 @@ class Parser : public executor::JobThread {
     explicit Parser(container::FixedQueue<clr::RGB> &rgb_queue, Config &config);
 
  private:
+    void retrieve_data();
+    void check_sum();
+
     void parse_basic();
     void parse_rgb();
     void parse_circle();
