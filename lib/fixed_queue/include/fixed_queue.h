@@ -24,7 +24,7 @@ class FixedQueue {
         return _data[(_back + i) % _data.size()];
     }
     [[nodiscard]] const T &back() const {
-        return _data[_back];
+        return _data[(_back - 1) % _data.size()];
     }
     [[nodiscard]] size_t size() const {
         return _data.size();

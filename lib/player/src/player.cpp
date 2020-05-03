@@ -15,7 +15,7 @@ Player::Player(container::FixedQueue<clr::RGB> &rgb_queue,
 }
 
 void Player::job() {
-//    auto sleepy_time = std::chrono::system_clock::now() + _cfg.get_timeout();
+    auto sleepy_time = std::chrono::system_clock::now() + _cfg.get_timeout();
     if (_cfg.changed != parser::NOTHING_CHANGED) {
         std::unique_lock _(_mutex);
         switch (_cfg.changed) {
@@ -56,6 +56,6 @@ void Player::job() {
         default: throw exception::Exception("wrong mode");
     }
     _ws281x.render();
-//    std::this_thread::sleep_until(sleepy_time);
+    std::this_thread::sleep_until(sleepy_time);
 }
 }  // namespace executor
