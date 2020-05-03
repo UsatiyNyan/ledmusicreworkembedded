@@ -49,8 +49,8 @@ class Config {
     size_t _length = 32;
     size_t _width = 8;
     float _radian = 0;
-    std::chrono::milliseconds _timeout = 50ms;
-    uint8_t _mode = FLAGS::BASIC;
+    std::chrono::milliseconds _timeout = 25ms;
+    uint8_t _mode = FLAGS::CIRCLE;
 };
 }  // namespace parser
 
