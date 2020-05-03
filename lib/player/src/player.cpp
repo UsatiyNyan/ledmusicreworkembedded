@@ -44,12 +44,15 @@ void Player::job() {
         case parser::BASIC:_ws281x.simple_mode(_rgb_queue.back());
             break;
         case parser::CIRCLE:
-            for (int i = static_cast<int>(_rgb_queue.size()) - 1; i >= 0; --i) {
+//            for (int i = static_cast<int>(_rgb_queue.size()) - 1; i >= 0; --i) {
+//                _ws281x.show_circle(_circles[i], _rgb_queue[i]);
+//            }
+            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
                 _ws281x.show_circle(_circles[i], _rgb_queue[i]);
             }
             break;
         case parser::POLYGON:
-            for (int i = static_cast<int>(_rgb_queue.size()) - 1; i >= 0; --i) {
+            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
                 _ws281x.show_polygon(_polygons[i], _rgb_queue[i]);
             }
             break;
