@@ -25,13 +25,16 @@ void Parser::job() {
         _connection.read_exact(&buf, 1);
     } while (buf != BEGIN);
 
-    do {
+    while (true) {
         _connection.read_exact(&buf, 1);
+        if (buf == END) {
+            break;
+        }
         _read_buf.push_back(buf);
-    } while (buf != END);
+    }
 
-    for (size_t i = 0; _read_buf[i] != END ; ++i) {
-        std::cout << static_cast<int>(_read_buf[i]) << " | ";
+    for (const auto &byte: _read_buf) {
+        std::cout << static_cast<int>(byte) << " | ";
     }
     std::cout << std::endl;
 
