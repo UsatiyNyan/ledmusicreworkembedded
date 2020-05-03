@@ -1,5 +1,6 @@
 #include "player.h"
 #include <chrono>
+#include <iostream>
 
 namespace loop {
 Player::Player(container::FixedQueue<clr::RGB> &rgb_queue,
@@ -47,7 +48,11 @@ void Player::job() {
             std::unique_lock _(_mutex);
             for (int i = static_cast<int>(_rgb_queue.size()) - 1; i >= 0; --i) {
                 _ws281x.show_circle(_circles[i], _rgb_queue.at_reversed(i));
+                std::cout << "(" << _rgb_queue.at_reversed(i).r << "|"
+                          << _rgb_queue.at_reversed(i).g << "|"
+                          << _rgb_queue.at_reversed(i).b << ")";
             }
+            std::cout << std::endl;
         }
             break;
         case parser::POLYGON: {
