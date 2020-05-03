@@ -17,8 +17,6 @@ class Polygon {
     [[nodiscard]] const std::vector<Point> &get_vertices() const;
  private:
     std::vector<Point> _vertices;
-    float _cos = 0;
-    bool _ind_cos = false;
 };
 class Polygons {
  public:
