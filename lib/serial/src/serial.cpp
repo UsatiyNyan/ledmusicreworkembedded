@@ -67,8 +67,8 @@ Connection::Connection(const std::string &serialport, int baud) {
     tty.c_oflag &= ~OPOST; // make raw
 
     // see: http://unixwiz.net/techtips/termios-vmin-vtime.html
-    tty.c_cc[VMIN] = 2;
-    tty.c_cc[VTIME] = 20;
+    tty.c_cc[VMIN] = 0;
+    tty.c_cc[VTIME] = 0;
 
     tcsetattr(_fd.fd(), TCSANOW, &tty);
     if (tcsetattr(_fd.fd(), TCSAFLUSH, &tty) < 0) {
