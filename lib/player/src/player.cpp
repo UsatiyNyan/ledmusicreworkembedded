@@ -46,19 +46,19 @@ void Player::job() {
             break;
         case parser::CIRCLE: {
             std::unique_lock _(_mutex);
-            for (int i = static_cast<int>(_rgb_queue.size()) - 1; i >= 0; --i) {
-                _ws281x.show_circle(_circles[i], _rgb_queue.at_reversed(i));
-                std::cout << "(" << _rgb_queue.at_reversed(i).r << "|"
-                          << _rgb_queue.at_reversed(i).g << "|"
-                          << _rgb_queue.at_reversed(i).b << ")";
+            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
+                _ws281x.show_circle(_circles[i], _rgb_queue[i]);
+                std::cout << "(" << _rgb_queue[i].r << "|"
+                          << _rgb_queue[i].g << "|"
+                          << _rgb_queue[i].b << ")";
             }
             std::cout << std::endl;
         }
             break;
         case parser::POLYGON: {
             std::unique_lock _(_mutex);
-            for (int i = static_cast<int>(_rgb_queue.size()) - 1; i >= 0; --i) {
-                _ws281x.show_polygon(_polygons[i], _rgb_queue.at_reversed(i));
+            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
+                _ws281x.show_polygon(_polygons[i], _rgb_queue[i]);
             }
         }
             break;

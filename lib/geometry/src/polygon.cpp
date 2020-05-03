@@ -44,9 +44,9 @@ Point &Polygon::operator[](size_t i) {
 }
 Polygons::Polygons(const std::vector<Point> &vertices, size_t size, const std::vector<Point> &tr_matrix)
     : _polygons(size, Polygon(vertices)) {
-    for (size_t i = 0; i < size; ++i) {
-        for (size_t j = 0; j < i; ++j) {
-            _polygons[i].expand(tr_matrix);
+    for (int i = 0; i != size; ++i) {
+        for (int j = i; j >= 0; --j) {
+            _polygons[j].expand(tr_matrix);
         }
     }
 }
