@@ -1,6 +1,5 @@
 #include "player.h"
 #include <chrono>
-#include <iostream>
 
 namespace loop {
 Player::Player(container::FixedQueue<clr::RGB> &rgb_queue,
@@ -48,11 +47,7 @@ void Player::job() {
             std::unique_lock _(_mutex);
             for (size_t i = 0; i != _rgb_queue.size(); ++i) {
                 _ws281x.show_circle(_circles[i], _rgb_queue[i]);
-                std::cout << "(" << _rgb_queue[i].r << "|"
-                          << _rgb_queue[i].g << "|"
-                          << _rgb_queue[i].b << ")";
             }
-            std::cout << std::endl;
         }
             break;
         case parser::POLYGON: {

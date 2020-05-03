@@ -13,7 +13,7 @@ using exception::Exception;
 
 namespace led {
 static int rgb_to_hex(const clr::RGB &led_rgb) {
-    return ((led_rgb.g & 0xff) << 16) + ((led_rgb.r & 0xff) << 8) + (led_rgb.b & 0xff);
+    return ((led_rgb.g & 0xFF) << 16) + ((led_rgb.r & 0xFF) << 8) + (led_rgb.b & 0xFF);
 }
 
 WS281X::WS281X(size_t width, size_t length)
@@ -223,7 +223,7 @@ void WS281X::show_circle(const Circle &circle, const clr::RGB &color) {
             delta += 2 * (x - y);
             --y;
         }
-    } else {  // TODO: check 0.5
+    } else {
         float x = 0.5f;
         float y = std::floor(radius) + 0.5f;
         float rad = y;
@@ -270,7 +270,7 @@ size_t WS281X::get_width() const {
 size_t WS281X::get_length() const {
     return _length;
 }
-int WS281X::transform_coord(int x, int y) { // TODO: Ask Anton
+int WS281X::transform_coord(int x, int y) {
     int center = static_cast<int>(_width * _length / 2 - _width / 2 - 1);
     if (x % 2 != 0) {
         return center + ((x * static_cast<int>(_width)) - y + 1);
