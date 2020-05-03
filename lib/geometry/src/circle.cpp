@@ -20,7 +20,7 @@ size_t Circle::get_radius() const {
 }
 Circles::Circles(const Point &center, size_t size)
     : _circles(size, Circle(center)) {
-    for (int i = 0; i != size; ++i) {
+    for (int i = 0; i != size - 1; ++i) {
         for (int j = i; j >= 0; --j) {
             _circles[j].expand();
         }
