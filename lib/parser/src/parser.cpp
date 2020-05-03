@@ -78,15 +78,15 @@ void Parser::parse_rgb() {
         return;
     }
     _rgb_queue.push_back({
-        ((static_cast<unsigned>(_read_buf[1])) - '0') * 100 +
-        ((static_cast<unsigned>(_read_buf[2])) - '0') * 10 +
-        ((static_cast<unsigned>(_read_buf[3])) - '0'),
-        ((static_cast<unsigned>(_read_buf[4])) - '0') * 100 +
-        ((static_cast<unsigned>(_read_buf[5])) - '0') * 10 +
-        ((static_cast<unsigned>(_read_buf[6])) - '0'),
-        ((static_cast<unsigned>(_read_buf[7])) - '0') * 100 +
-        ((static_cast<unsigned>(_read_buf[8])) - '0') * 10 +
-        ((static_cast<unsigned>(_read_buf[9])) - '0')
+        ((static_cast<unsigned>(_read_buf[2])) - '0') * 100 +
+        ((static_cast<unsigned>(_read_buf[3])) - '0') * 10 +
+        ((static_cast<unsigned>(_read_buf[4])) - '0'),
+        ((static_cast<unsigned>(_read_buf[5])) - '0') * 100 +
+        ((static_cast<unsigned>(_read_buf[6])) - '0') * 10 +
+        ((static_cast<unsigned>(_read_buf[7])) - '0'),
+        ((static_cast<unsigned>(_read_buf[8])) - '0') * 100 +
+        ((static_cast<unsigned>(_read_buf[9])) - '0') * 10 +
+        ((static_cast<unsigned>(_read_buf[10])) - '0')
     });
     std::cout << _rgb_queue.back().r << " | "
               << _rgb_queue.back().g << " | "
