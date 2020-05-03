@@ -10,36 +10,53 @@ constexpr size_t baud = 19200;
 constexpr const char *serial_port = "/dev/serial0";
 
 namespace parser {
+constexpr const uint8_t BEGIN = '<';
+constexpr const uint8_t END = '>';
+
 Parser::Parser(container::FixedQueue<clr::RGB> &rgb_queue, Config &config)
     : _connection(serial_port, baud),
       _config(config),
       _rgb_queue(rgb_queue) {
 }
 void Parser::job() {
-    _read_buf.resize(128);
-    _connection.read_exact(_read_buf.data(), 2);
-    uint8_t checksum = _read_buf[0];
-    uint8_t flag = _read_buf[1];
-    switch (flag) {
-        case BASIC:parse_basic(checksum);
-            break;
-        case RGB:parse_rgb(checksum);
-            break;
-        case CIRCLE:parse_circle(checksum);
-            break;
-        case POLYGON:parse_polygon(checksum);
-            break;
-        case BPM:parse_bpm(checksum);
-            break;
-        case ROTATION:parse_rotation(checksum);
-            break;
-        case LENGTH_AND_WIDTH:parse_length_and_width(checksum);
-            break;
-        default:_connection.flush_input();
-            break;
+    uint8_t buf = 0;
+    _read_buf.clear();
+    do {
+        _connection.read_exact(&buf, 1);
+    } while (buf != BEGIN);
+
+    do {
+        _connection.read_exact(&buf, 1);
+        _read_buf.push_back(buf);
+    } while (buf != END);
+
+    for (auto & byte: _read_buf) {
+        std::cout << static_cast<int>(byte) << " | ";
     }
-    _connection.flush();
-    _connection.write_exact(_write_buf.data(), 2);
+    std::cout << std::endl;
+//
+//
+//    uint8_t checksum = _read_buf[0];
+//    uint8_t flag = _read_buf[1];
+//    switch (flag) {
+//        case BASIC:parse_basic(checksum);
+//            break;
+//        case RGB:parse_rgb(checksum);
+//            break;
+//        case CIRCLE:parse_circle(checksum);
+//            break;
+//        case POLYGON:parse_polygon(checksum);
+//            break;
+//        case BPM:parse_bpm(checksum);
+//            break;
+//        case ROTATION:parse_rotation(checksum);
+//            break;
+//        case LENGTH_AND_WIDTH:parse_length_and_width(checksum);
+//            break;
+//        default:_connection.flush_input();
+//            break;
+//    }
+//    _connection.flush();
     std::this_thread::sleep_for(40ms);
 }
 void Parser::parse_basic(uint8_t checksum) {
