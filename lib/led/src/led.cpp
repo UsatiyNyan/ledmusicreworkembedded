@@ -279,7 +279,9 @@ int WS281X::transform_coord(int x, int y) { // TODO: Ask Anton
     }
 }
 bool WS281X::check_coord(int x, int y) {
-    return ((y <= _width / 2) && (y >= -_width / 2 + 1)) &&
-        ((x <= _length / 2) && (x >= -_length / 2 + 1));
+    return ((y <= static_cast<int>(_width) / 2) &&
+            (y >= -static_cast<int>(_width) / 2 + 1)) &&
+           ((x <= static_cast<int>(_length) / 2) &&
+            (x >= -static_cast<int>(_length) / 2 + 1));
 }
 }  // namespace led
