@@ -16,6 +16,7 @@ Parser::Parser(container::FixedQueue<clr::RGB> &rgb_queue, Config &config)
       _rgb_queue(rgb_queue) {
 }
 void Parser::job() {
+    _read_buf.resize(128);
     _connection.read_exact(_read_buf.data(), 2);
     uint8_t checksum = _read_buf[0];
     uint8_t flag = _read_buf[1];
@@ -37,7 +38,9 @@ void Parser::job() {
         default:_connection.flush_input();
             break;
     }
+    _connection.flush();
     _connection.write_exact(_write_buf.data(), 2);
+    std::this_thread::sleep_for(40ms);
 }
 void Parser::parse_basic(uint8_t checksum) {
     if ((checksum ^ BASIC) != 0xFF) {

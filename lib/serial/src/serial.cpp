@@ -13,11 +13,11 @@ static uint32_t int_to_baud(int baud) {
         case 4800:return B4800;
         case 9600:return B9600;
 #ifdef B14400
-            case 14400:return B14400;
+        case 14400:return B14400;
 #endif
         case 19200:return B19200;
 #ifdef B28800
-            case 28800:return B28800;
+        case 28800:return B28800;
 #endif
         case 38400:return B38400;
         case 57600:return B57600;
@@ -32,8 +32,8 @@ static uint32_t int_to_baud(int baud) {
 Connection::Connection(const std::string &serialport, int baud) {
     termios tty{};
     //file_descriptor = open(serialport, O_RDWR | O_NOCTTY | O_NDELAY);
-//    _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR | O_NONBLOCK));
-    _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR));
+    _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR | O_NONBLOCK));
+//    _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR));
     if (_fd.fd() == -1) {
         throw Exception("serialport_init: Unable to open port ");
     }
