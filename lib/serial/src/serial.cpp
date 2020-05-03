@@ -32,7 +32,8 @@ static uint32_t int_to_baud(int baud) {
 Connection::Connection(const std::string &serialport, int baud) {
     termios tty{};
     //file_descriptor = open(serialport, O_RDWR | O_NOCTTY | O_NDELAY);
-    _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR | O_NONBLOCK));
+//    _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR | O_NONBLOCK));
+    _fd = fd::FileDescriptor(open(serialport.c_str(), O_RDWR));
     if (_fd.fd() == -1) {
         throw Exception("serialport_init: Unable to open port ");
     }
