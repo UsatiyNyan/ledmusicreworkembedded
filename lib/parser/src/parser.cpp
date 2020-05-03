@@ -31,25 +31,27 @@ void Parser::job() {
 //        std::cout << static_cast<int>(byte) << " | ";
 //    }
 //    std::cout << std::endl;
-
-    uint8_t flag = _read_buf[1];
-    switch (flag) {
-        case BASIC:parse_basic();
-            break;
-        case RGB:parse_rgb();
-            break;
-        case CIRCLE:parse_circle();
-            break;
-        case POLYGON:parse_polygon();
-            break;
-        case BPM:parse_bpm();
-            break;
-        case ROTATION:parse_rotation();
-            break;
-        case LENGTH_AND_WIDTH:parse_length_and_width();
-            break;
-        default:_connection.flush_input();
-            break;
+    {
+        std::unique_lock _(_mutex);
+        uint8_t flag = _read_buf[1];
+        switch (flag) {
+            case BASIC:parse_basic();
+                break;
+            case RGB:parse_rgb();
+                break;
+            case CIRCLE:parse_circle();
+                break;
+            case POLYGON:parse_polygon();
+                break;
+            case BPM:parse_bpm();
+                break;
+            case ROTATION:parse_rotation();
+                break;
+            case LENGTH_AND_WIDTH:parse_length_and_width();
+                break;
+            default:_connection.flush_input();
+                break;
+        }
     }
     std::this_thread::sleep_for(10ms);
 }

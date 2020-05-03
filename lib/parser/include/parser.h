@@ -31,7 +31,7 @@ class Parser : public executor::JobThread {
     Config &_config;
     serial::Connection _connection;
     std::vector<uint8_t> _read_buf{128};
-    std::vector<uint8_t> _write_buf = {'<', '>'};
+    std::mutex _mutex;
 };
 }  // namespace parser
 
