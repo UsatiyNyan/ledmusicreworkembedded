@@ -120,7 +120,7 @@ void Parser::parse_bpm() {
         ((static_cast<unsigned>(_read_buf[2])) - '0') * 100 +
         ((static_cast<unsigned>(_read_buf[3])) - '0') * 10 +
         ((static_cast<unsigned>(_read_buf[4])) - '0');
-    _config._timeout = std::chrono::milliseconds(60000 / bpm);
+    _config._timeout = std::chrono::milliseconds(15000 / bpm);
     _config.changed = BPM;
 }
 void Parser::parse_rotation() {
