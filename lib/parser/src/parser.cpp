@@ -57,7 +57,7 @@ void Parser::job() {
         default:_connection.flush_input();
             break;
     }
-    std::this_thread::sleep_for(40ms);
+    std::this_thread::sleep_for(10ms);
 }
 void Parser::parse_basic() {
     uint8_t checksum = _read_buf[0];
