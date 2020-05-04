@@ -45,14 +45,14 @@ void Player::job() {
             break;
         case parser::CIRCLE: {
             std::unique_lock _(_mutex);
-            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
+            for (size_t i = 0; i != _cfg.get_2d_objs_amount(); ++i) { // FIXME i is 103????
                 _ws281x.show_circle(_circles[i], _rgb_queue[i]);
             }
         }
             break;
         case parser::POLYGON: {
             std::unique_lock _(_mutex);
-            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
+            for (size_t i = 0; i != _cfg.get_2d_objs_amount(); ++i) {
                 _ws281x.show_polygon(_polygons[i], _rgb_queue[i]);
             }
         }

@@ -10,18 +10,25 @@ namespace geometry {
 Polygon::Polygon(const std::vector<Point> &vertices)
     : _vertices(vertices.cbegin(), vertices.cend()) {
     for (auto &vertex: _vertices) {
-        float x2y2 = std::sqrt(vertex.x * vertex.x + vertex.y * vertex.y);
-//        _expander.push_back();
+        float sqrt_x2y2 = std::sqrt(vertex.x * vertex.x + vertex.y * vertex.y);
+        float cos = vertex.x / sqrt_x2y2;
+        float sin = vertex.y / sqrt_x2y2;
+        _expander.push_back({(cos + vertex.x) / vertex.x , (sin + vertex.y) / vertex.y});
     }
 }
 void Polygon::expand(const std::vector<Point> &tr_matrix) {
     if (tr_matrix.size() != 2) {
         throw exception::Exception("wrong size of transformation matrix: " + std::to_string(tr_matrix.size()));
     }
-    for (auto &vertex: _vertices) {
-        vertex.x = 1.3f * tr_matrix[0].x * vertex.x +        tr_matrix[1].x * vertex.y;
-        vertex.y =        tr_matrix[0].y * vertex.x + 1.3f * tr_matrix[1].y * vertex.y;
+    for (size_t i = 0; i < _vertices.size(); ++i) {
+        _vertices[i].x *= _expander[i].x;
+        _vertices[i].y *= _expander[i].y;
     }
+    for (auto &vertex: _vertices) {
+        vertex.x = tr_matrix[0].x * vertex.x + tr_matrix[1].x * vertex.y;
+        vertex.y = tr_matrix[0].y * vertex.x + tr_matrix[1].y * vertex.y;
+    }
+
 }
 const std::vector<Point> &Polygon::get_vertices() const {
     return _vertices;
