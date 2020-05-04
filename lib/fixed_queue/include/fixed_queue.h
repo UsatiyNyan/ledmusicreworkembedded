@@ -5,7 +5,7 @@
 #ifndef RPI_LED_LIB_FIXED_QUEUE_INCLUDE_FIXED_QUEUE_H_
 #define RPI_LED_LIB_FIXED_QUEUE_INCLUDE_FIXED_QUEUE_H_
 
-#include <vector>
+#include <deque>
 #include <mutex>
 
 namespace container {
@@ -17,21 +17,20 @@ class FixedQueue {
 
     void push_back(T &&item) {
         std::unique_lock _(_mutex);
-        _data[_back] = std::move(item);
-        _back = ++_back % _data.size();
+        _data.pop_back();
+        _data.push_front(item);
     }
     T const &operator[](size_t i) const {
-        return _data[(_back - 1 - i) % _data.size()];
+        return _data[i];
     }
     [[nodiscard]] const T &back() const {
-        return _data[(_back - 1) % _data.size()];
+        return _data.front();
     }
     [[nodiscard]] size_t size() const {
         return _data.size();
     }
-    std::vector<T> _data;
-    size_t _back = 0;
  private:
+    std::deque<T> _data;
     std::mutex _mutex;
 };
 }  // namespace container

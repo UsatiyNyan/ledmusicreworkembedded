@@ -8,8 +8,8 @@
 #include "circle.h"
 
 int main() {
-    container::FixedQueue<int> fixed_queue(4);
-    for (uint8_t i = 0; i < 100; ++i) {
+    container::FixedQueue<long long> fixed_queue(4);
+    for (size_t i = 0; i < 1000000000; ++i) {
         fixed_queue.push_back(i);
         std::cout << "--------------------------" << std::endl;
         std::cout << fixed_queue[0] << std::endl;
