@@ -19,10 +19,9 @@ class FixedQueue {
         std::unique_lock _(_mutex);
         _data.pop_back();
         _data.push_front(item);
-        _data.shrink_to_fit();
     }
     T const &operator[](size_t i) const {
-        return _data[i];
+        return _retriever[i];
     }
     [[nodiscard]] const T &back() const {
         return _data.front();
@@ -30,8 +29,13 @@ class FixedQueue {
     [[nodiscard]] size_t size() const {
         return _data.size();
     }
+    void update() {
+        std::unique_lock _(_mutex);
+        _retriever.assign(_data.begin(), _data.end());
+    }
  private:
     std::deque<T> _data;
+    std::deque<T> _retriever;
     std::mutex _mutex;
 };
 }  // namespace container
