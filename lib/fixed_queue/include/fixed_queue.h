@@ -29,10 +29,10 @@ class FixedQueue {
     [[nodiscard]] size_t size() const {
         return _data.size();
     }
- private:
-    std::mutex _mutex;
     std::vector<T> _data;
     size_t _back = 0;
+ private:
+    std::mutex _mutex;
 };
 }  // namespace container
 

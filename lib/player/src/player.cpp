@@ -45,15 +45,19 @@ void Player::job() {
             break;
         case parser::CIRCLE: {
             std::unique_lock _(_mutex);
-            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
-                _ws281x.show_circle(_circles[i], _rgb_queue[i]);
+            std::vector tmp_queue(_rgb_queue._data);
+            size_t back = _rgb_queue._back;
+            for (size_t i = 0; i != tmp_queue.size(); ++i) {
+                _ws281x.show_circle(_circles[i], tmp_queue[(back - 1 - i) % tmp_queue.size()]);
             }
         }
             break;
         case parser::POLYGON: {
             std::unique_lock _(_mutex);
+            std::vector tmp_queue(_rgb_queue._data);
+            size_t back = _rgb_queue._back;
             for (size_t i = 0; i != _rgb_queue.size(); ++i) {
-                _ws281x.show_polygon(_polygons[i], _rgb_queue[i]);
+                _ws281x.show_polygon(_polygons[i], tmp_queue[(back - 1 - i) % tmp_queue.size()]);
             }
         }
             break;
