@@ -239,7 +239,6 @@ void WS281X::show_circle(const Circle &circle, const clr::RGB &color) {
             g = (x + 0.5f) * (x + 0.5f) + y * y - rad * rad;
             v = x * x + (y - 0.5f) * (y - 0.5f) - rad * rad;
             d = (x + 0.5f) * (x + 0.5f) + (y - 0.5f) * (y - 0.5f) - rad * rad;
-            //std::cout << v << ' ' << g << ' ' << d  << std::endl;
             if (d < 0) {
                 if (std::fabs(g) - std::fabs(d) <= 0) {
                     x++;

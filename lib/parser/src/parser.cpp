@@ -53,6 +53,7 @@ void Parser::job() {
                 break;
         }
     }
+    _connection.flush_input();
     std::this_thread::sleep_for(10ms);
 }
 void Parser::retrieve_data() {
