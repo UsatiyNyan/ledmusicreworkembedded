@@ -13,18 +13,18 @@ template<typename T>
 class FixedQueue {
  public:
     explicit FixedQueue(size_t size)
-        : _data(size) {}
+        : _data(size, T()) {}
 
     void push_back(T &&item) {
         std::unique_lock _(_mutex);
-        _data.pop_back();
-        _data.insert(_data.begin(), item);
+        _data[_back] = std::move(item);
+        _back = ++_back % _data.size();
     }
     T const &operator[](size_t i) const {
-        return _data[i];
+        return _data[(_back - 1 - i) % _data.size()];
     }
     [[nodiscard]] const T &back() const {
-        return _data.front();
+        return _data[(_back - 1) % _data.size()];
     }
     [[nodiscard]] size_t size() const {
         return _data.size();
@@ -32,6 +32,7 @@ class FixedQueue {
  private:
     std::mutex _mutex;
     std::vector<T> _data;
+    size_t _back = 0;
 };
 }  // namespace container
 

@@ -4,10 +4,15 @@
 
 #include "polygon.h"
 #include "base_exception.h"
+#include <cmath>
 
 namespace geometry {
 Polygon::Polygon(const std::vector<Point> &vertices)
     : _vertices(vertices.cbegin(), vertices.cend()) {
+    for (auto &vertex: _vertices) {
+        float x2y2 = std::sqrt(vertex.x * vertex.x + vertex.y * vertex.y);
+//        _expander.push_back();
+    }
 }
 void Polygon::expand(const std::vector<Point> &tr_matrix) {
     if (tr_matrix.size() != 2) {

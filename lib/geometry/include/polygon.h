@@ -17,6 +17,7 @@ class Polygon {
     [[nodiscard]] const std::vector<Point> &get_vertices() const;
  private:
     std::vector<Point> _vertices;
+    std::vector<Point> _expander;
 };
 class Polygons {
  public:
