@@ -46,7 +46,7 @@ void Player::job() {
         case parser::CIRCLE: {
             std::unique_lock _(_mutex);
             _rgb_queue.update();
-            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
+            for (size_t i = 0; i != _cfg.get_2d_objs_amount(); ++i) {
                 _ws281x.show_circle(_circles[i], _rgb_queue[i]);
             }
         }
@@ -54,7 +54,7 @@ void Player::job() {
         case parser::POLYGON: {
             std::unique_lock _(_mutex);
             _rgb_queue.update();
-            for (size_t i = 0; i != _rgb_queue.size(); ++i) {
+            for (size_t i = 0; i != _cfg.get_2d_objs_amount(); ++i) {
                 _ws281x.show_polygon(_polygons[i], _rgb_queue[i]);
             }
         }

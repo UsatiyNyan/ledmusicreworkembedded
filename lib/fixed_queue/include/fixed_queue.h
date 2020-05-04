@@ -6,6 +6,7 @@
 #define RPI_LED_LIB_FIXED_QUEUE_INCLUDE_FIXED_QUEUE_H_
 
 #include <deque>
+#include <vector>
 #include <mutex>
 
 namespace container {
@@ -35,7 +36,7 @@ class FixedQueue {
     }
  private:
     std::deque<T> _data;
-    std::deque<T> _retriever;
+    std::vector<T> _retriever;
     std::mutex _mutex;
 };
 }  // namespace container
