@@ -110,7 +110,7 @@ void Parser::parse_circle() {
     _config._mode = CIRCLE;
     _config.changed = CIRCLE;
 }
-void Parser::parse_polygon() { // TODO
+void Parser::parse_polygon() {
     std::vector<geometry::Point> new_vertices;
     for (size_t i = 2; i < (_read_buf.size() - 2) / 6; ++i) {
         new_vertices.push_back({static_cast<float>(_read_buf[i + 0] - '0') * 100 +
