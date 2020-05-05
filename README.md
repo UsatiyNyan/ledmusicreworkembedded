@@ -10,3 +10,6 @@ https://github.com/UsatiyNyan/ledmusicrework
 ## known bugs
 1) polygons are not working for now (expansion is not working properly)
 2) changing size of LED matrix through desktop causes SEGFAULT;) (feel free to change defaults in code which is pretty self explanatory)
+## my setup
+![on the left](https://github.com/UsatiyNyan/ledmusicreworkembedded/blob/master/setup1.jpg?raw=true) 
+![on the left](https://github.com/UsatiyNyan/ledmusicreworkembedded/blob/master/setup2.jpg?raw=true) 
