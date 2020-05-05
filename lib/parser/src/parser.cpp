@@ -3,7 +3,6 @@
 #include <cmath>
 
 #include "parser.h"
-#include "base_exception.h"
 
 using namespace std::chrono_literals;
 
@@ -96,23 +95,30 @@ void Parser::parse_rgb() {
         ((static_cast<unsigned>(_read_buf[9])) - '0') * 10 +
         ((static_cast<unsigned>(_read_buf[10])) - '0')
     });
-    std::cout << _rgb_queue.back().r << " | "
-              << _rgb_queue.back().g << " | "
-              << _rgb_queue.back().b << std::endl;
 }
 void Parser::parse_circle() {
     _config._center = {
-        static_cast<float>(_read_buf[2]),
-        static_cast<float>(_read_buf[3])
+        static_cast<float>(_read_buf[2] - '0') * 100 +
+        static_cast<float>(_read_buf[3] - '0') * 10 +
+        static_cast<float>(_read_buf[4] - '0'),
+        static_cast<float>(_read_buf[5] - '0') * 100 +
+        static_cast<float>(_read_buf[6] - '0') * 10 +
+        static_cast<float>(_read_buf[7] - '0'),
     };
+    _config._center.x -= 500;
+    _config._center.y -= 500;
     _config._mode = CIRCLE;
     _config.changed = CIRCLE;
 }
-void Parser::parse_polygon() {
-    std::vector<geometry::Point> new_vertices(_read_buf.size() - 2);
-    for (size_t i = 0; i < _read_buf.size() - 2; ++i) {
-        new_vertices[i].x = _read_buf[2 + 2 * i];
-        new_vertices[i].y = _read_buf[2 + 2 * i + 1];
+void Parser::parse_polygon() { // TODO
+    std::vector<geometry::Point> new_vertices;
+    for (size_t i = 2; i < (_read_buf.size() - 2) / 6; ++i) {
+        new_vertices.push_back({static_cast<float>(_read_buf[i + 0] - '0') * 100 +
+        static_cast<float>(_read_buf[i + 1] - '0') * 10 +
+        static_cast<float>(_read_buf[i + 2] - '0') - 500,
+        static_cast<float>(_read_buf[i + 3] - '0') * 100 +
+        static_cast<float>(_read_buf[i + 4] - '0') * 10 +
+        static_cast<float>(_read_buf[i + 5] - '0') - 500});
     }
     _config._vertices = std::move(new_vertices);
     _config._mode = POLYGON;
@@ -127,7 +133,11 @@ void Parser::parse_bpm() {
     _config.changed = BPM;
 }
 void Parser::parse_rotation() {
-    _config._radian = static_cast<float>(_read_buf[2]) *
+    int16_t degree =
+            ((static_cast<unsigned>(_read_buf[2])) - '0') * 100 +
+            ((static_cast<unsigned>(_read_buf[3])) - '0') * 10 +
+            ((static_cast<unsigned>(_read_buf[4])) - '0');
+    _config._radian = static_cast<float>(degree - 180) *
                       static_cast<float>(M_PI) / 180;
     _config.changed = ROTATION;
 }
